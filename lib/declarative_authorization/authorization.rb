@@ -20,7 +20,12 @@ module Authorization
   # The exception is raised to ensure that the entire rule is invalidated.
   class NilAttributeValueError < AuthorizationError; end
 
-  AUTH_DSL_FILES = [Pathname.new(Rails.root || '').join('config', 'authorization_rules.rb').to_s].freeze unless defined? AUTH_DSL_FILES
+  # although .freeze is a good idea, unfortunately this breaks when engines
+  # add information after 'AUTH_DSL_FILES' is defined by rails core
+  AUTH_DSL_FILES  = [ Pathname.new(Rails.root || '')
+                              .join('config', 'authorization_rules.rb')
+                              .to_s
+                    ] unless defined? AUTH_DSL_FILES
 
   # Controller-independent method for retrieving the current user.
   # Needed for model security where the current controller is not available.
