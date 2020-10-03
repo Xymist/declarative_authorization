@@ -10,6 +10,9 @@ Branch r5: [![Build Status](https://travis-ci.org/Xymist/declarative_authorizati
 cp gemfiles/{RAILS_VERSION}.gemfile Gemfile
 bundle
 
+echo "#{RUBY_VERSION}" > .ruby-version
+e.g echo '2.6.6' > .ruby-version
+
 bundle exec rake test
 ```
 
